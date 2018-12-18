@@ -16,7 +16,7 @@ class Contacts extends Migration
         Schema::create('contacts', function (Blueprint $table) {
             $table->increments('id_cont');
             $table->integer('id_cont_k');
-            $table->integer('id_comp');
+            $table->integer('id_comp')->nullable();
             $table->string('description',120)->unique();
             $table->foreign('id_cont_k')->references('id_cont_k')->on('contact_kinds');
             $table->foreign('id_comp')->references('id_comp')->on('companies');

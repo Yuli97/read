@@ -20,4 +20,17 @@ class Company extends Model
     {
         return $this->hasMany('\App\Contact', 'id_comp'); // modelo y clave foránea
     }
+
+    public static function findAddress($array, $id_addr)
+    {
+        foreach ($array as $item) {
+                if ($item->id_addr == $id_addr) {
+                    info($item->id_addr);
+                    info($id_addr);
+                    return true;
+                }
+        }
+        return false;
+    }
+
 }
