@@ -2,16 +2,40 @@
 <html lang="en">
 
   <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
 
+
+{{--
+DISEÑO PARA TABLAS
+  --}}
+
+  <!-- Bootstrap core CSS-->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template-->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+  <!-- Page level plugin CSS-->
+  <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="css/sb-admin.css" rel="stylesheet">
+
+{{--
+DISEÑO PARA TABLAS
+  --}}
+
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>@yield('title','FACTURACION |AMAZON UTN')</title>
+
     <!-- Scripts -->
-    {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
 
     <!-- Bootstrap core CSS-->
     <link href="{{ asset('teme/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -26,8 +50,6 @@
     <link href="{{ asset('teme/css/sb-admin.css')}}" rel="stylesheet">
 
     <!-- Scripts -->
-
-    <script type="text/javascript" src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -64,16 +86,16 @@
           <!-- Authentication Links -->
           @guest
               <li class="nav-item">
-                  <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                  <a class="btn btn-warning" href="{{ route('login') }}">{{ __('Login') }}</a>
               </li>
-             @if (Route::has('register'))
+             {{--  @if (Route::has('register'))
                   <li class="nav-item">
                       <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                   </li>
-              @endif
+              @endif  --}}
           @else
               <li class="nav-item dropdown">
-                  <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                  <a id="navbarDropdown" class="navbar-brand mr-1" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                       {{ Auth::user()->name }} <span class="caret"></span>
                   </a>
 
@@ -107,14 +129,15 @@
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fas fa-fw fa-folder"></i>
+              <i class="fas fa-fw fa-tasks"></i>
               <span>Compañia</span>
             </a>
             <div class="dropdown-menu" aria-labelledby="pagesDropdown">
               <h6 class="dropdown-header">Compañía:</h6>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="{{url('company/create')}}">Agragar Datos</a>
               <a class="dropdown-item" href="{{ url('company') }}">Listar Datos</a>
+              <a class="dropdown-item" href="{{url('company/create')}}">Agregar Nuevo</a>
+
             </div>
 
       </ul>
@@ -129,7 +152,7 @@
     </a>
 
     <!-- Logout Modal-->
-    {{--  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -145,12 +168,7 @@
           </div>
         </div>
       </div>
-    </div>  --}}
-
-    <!-- Bootstrap core JavaScript-->
-    <script src="{{ asset('teme/vendor/jquery/jquery.min.js')}}"></script>
-    <script src="{{ asset('teme/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-
+    </div>
     <!-- Core plugin JavaScript-->
     <script src="{{ asset('teme/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
 
@@ -165,6 +183,10 @@
     <!-- Demo scripts for this page-->
     <script src="{{ asset('teme/js/demo/datatables-demo.js')}}"></script>
     <script src="{{ asset('teme/js/demo/chart-area-demo.js')}}"></script>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="{{ asset('teme/vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{ asset('teme/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
   </body>
 

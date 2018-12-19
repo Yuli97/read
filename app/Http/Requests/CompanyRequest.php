@@ -24,11 +24,12 @@ class CompanyRequest extends FormRequest
     public function rules()
     {
         return [
-            'ruc'=>'required|string|max:15',
+            'ruc'=>'required|string|max:15|ruc',
             'name'=>'required|string|max:100',
             'slogan'=>'required|string|max:150',
-            'address' => 'required|int'
-            //'id_cont_k' => 'nullable|array'
+            'address' => 'required|int',
+            'id_cont_k' => 'nullable|int',
+            'contact_desc' =>'nullable|string|max:120'
         ];
     }
 }

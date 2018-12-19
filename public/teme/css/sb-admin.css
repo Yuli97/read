@@ -132,7 +132,7 @@ body.fixed-nav.sidebar-toggled #content-wrapper {
 
 .sidebar {
   width: 90px !important;
-  background-color:#e9ecef;
+  background-color:rgba(14, 10, 10, 0.664);
   min-height: calc(100vh - 56px);
 }
 
@@ -169,11 +169,11 @@ body.fixed-nav.sidebar-toggled #content-wrapper {
 }
 
 .sidebar .nav-item .nav-link {
- color: rgba(241, 14, 14, 0.75);
+ color: #fff;
 }
 
 .sidebar .nav-item .nav-link:active, .sidebar .nav-item .nav-link:focus, .sidebar .nav-item .nav-link:hover {
-  color: rgba(78, 74, 74, 0.75);
+  color: rgba(255, 254, 253, 0.75);
 }
 
 .sidebar.toggled {

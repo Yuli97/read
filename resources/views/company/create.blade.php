@@ -10,35 +10,36 @@
                         <li class="breadcrumb-item">
                             <a href="#">Compañía</a>
                         </li>
-                        <li class="breadcrumb-item active">Agregar Datos</li>
+                        <li class="breadcrumb-item active">Agregar Nuevo</li>
                     </ol>
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header"> INGRESAR NUEVA COMPAÑIA </div>
+                    <div class="card-header"> AGREGAR NUEVA COMPAÑIA </div>
                     <div class="card-body">
                         @include('sections.messages')
                         {!! Form::open(['url' => 'company','files'=>'true']) !!}
+                        <div class="form-group row">
+                            <label for="name" class="col-sm-2 col-form-label">NOMBRE</label>
+                            <div class="col-sm-6">
+                                <input required type="text" maxlength="100" class="form-control" id="name" name="name" value="{{old('name')}}">
+                            </div>
+                        </div>
                             <div class="form-group row">
                                 <label for="ruc" class="col-sm-2 col-form-label">RUC</label>
-                                <div class="col-sm-4">
+                                <div class="col-sm-6">
                                     <input required type="text" maxlength="15"  class="form-control" id="ruc" name="ruc" value="{{old('ruc')}}">
                                  </div>
                             </div>
+
                             <div class="form-group row">
-                                <label for="name" class="col-sm-2 col-form-label">Nombre</label>
-                                <div class="col-sm-10">
-                                    <input required type="text" maxlength="100" class="form-control" id="name" name="name" value="{{old('name')}}">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="slogan" class="col-sm-2 col-form-label">Eslogan</label>
-                                <div class="col-sm-10">
+                                <label for="slogan" class="col-sm-2 col-form-label">ESLOGAN</label>
+                                <div class="col-sm-6">
                                     <input required type="text" maxlength="150"  class="form-control" id="slogan" name="slogan" value="{{old('slogan')}}">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="address" class="col-sm-2 col-form-label">Dirección</label>
+                                <label for="address" class="col-sm-2 col-form-label">CIUDAD</label>
                                     <div class="col-sm-8">
                                         @foreach ($addresses as $addr)
                                             <div class="form-check">
@@ -50,22 +51,22 @@
                                         @endforeach
                                     </div>
                             </div>
-                            {{--  <div class="form-group row">
-                                    <label for="id_cont_k" class="col-sm-2 col-form-label">Contacto</label>
-                                        <div class="col-sm-2">
+                            <div class="form-group row">
+                                    <label for="id_cont_k" class="col-sm-2 col-form-label">CONTACTO</label>
+                                        <div class="col-sm-4">
                                             <div class="">
                                                 <select required class="form-control" id="id_cont_k" name="id_cont_k" >
                                                     @foreach($contacts_k as $cont_k)
                                                         <option value="{{$cont_k->id_cont_k}}">{{$cont_k->description}}</option>
                                                     @endforeach
                                                 </select>
-                                                <input required type="text" maxlength="150" style="width: 100%" class="form-control" placeholder="escribir contacto" id="description" name="description" value="{{old('description')}}">
 
                                             </div>
-
+                                            <input required type="text" maxlength="150" style="width: 100%" class="form-control" placeholder="escribir contacto" id="description" name="description" value="{{old('description')}}">
                                         </div>
 
-                            </div>  --}}
+
+                            </div>
                          {{--  <div class="form-group row">
                                     <label for="id_cont_k" class="col-sm-2 col-form-label">Contacto</label>
                                         <div class="col-sm-8">
