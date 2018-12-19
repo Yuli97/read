@@ -22,20 +22,20 @@
                         <div class="form-group row">
                             <label for="name" class="col-sm-2 col-form-label">NOMBRE</label>
                             <div class="col-sm-6">
-                                <input required type="text" maxlength="100" class="form-control" id="name" name="name" value="{{old('name')}}">
+                                <input required type="text" maxlength="100" placeholder="Nombre de la Compañía" class="form-control" id="name" name="name" value="{{old('name')}}">
                             </div>
                         </div>
                             <div class="form-group row">
                                 <label for="ruc" class="col-sm-2 col-form-label">RUC</label>
                                 <div class="col-sm-6">
-                                    <input required type="text" maxlength="15"  class="form-control" id="ruc" name="ruc" value="{{old('ruc')}}">
+                                    <input required type="text" maxlength="13" placeholder="Ej:000000000001"  class="form-control" id="ruc" name="ruc" value="{{old('ruc')}}">
                                  </div>
                             </div>
 
                             <div class="form-group row">
                                 <label for="slogan" class="col-sm-2 col-form-label">ESLOGAN</label>
                                 <div class="col-sm-6">
-                                    <input required type="text" maxlength="150"  class="form-control" id="slogan" name="slogan" value="{{old('slogan')}}">
+                                    <input required type="text" maxlength="150" placeholder="Eslogan de la compañía" class="form-control" id="slogan" name="slogan" value="{{old('slogan')}}">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -62,24 +62,11 @@
                                                 </select>
 
                                             </div>
-                                            <input required type="text" maxlength="150" style="width: 100%" class="form-control" placeholder="escribir contacto" id="description" name="description" value="{{old('description')}}">
+                                            <input required type="text"  maxlength="150" style="width: 100%" class="form-control" placeholder="Escribir contacto {{ ($cont_k->id_cont_k)==2 ? 'cell':''  }}" id="description" name="description" value="{{old('description')}}">
                                         </div>
 
 
                             </div>
-                         {{--  <div class="form-group row">
-                                    <label for="id_cont_k" class="col-sm-2 col-form-label">Contacto</label>
-                                        <div class="col-sm-8">
-                                            @foreach ($contacts_k as $cont_k)
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="{{$cont_k->id_cont_k}}" name="id_cont_k[]">
-                                                    <label class="form-check-label">
-                                                          {{$cont_k->description}}
-                                                      </label>
-                                                    </div>
-                                            @endforeach
-                                        </div>
-                            </div>  --}}
 
                             <div class="form-group row">
                                     <div class="col-sm-10">

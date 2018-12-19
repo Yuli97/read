@@ -56,7 +56,7 @@ class CompanyController extends Controller
             $contact->id_comp=$company->id_comp;
             $contact->description=$request->get('description');
             $contact->save();
-            return redirect('company')->with('success','Compañia registrada');
+            return redirect('company')->with('success','Datos de Compañía registrados');
         }catch(Exception $e){
             return back()->withErrors(['exception'=>$e->getMessage()])->withInput();
         }
@@ -128,7 +128,7 @@ class CompanyController extends Controller
             $id_cont=$contact->id_cont;
             Contact::destroy($id_cont);
             Company::destroy($id);
-            return redirect('company')->with('success','Datos de compañía eliminada');
+            return redirect('company')->with('success','Datos de compañía eliminados');
         }catch(Exception $e){
             return back()->withErrors(['exception'=>$e->getMessage()]);
         }

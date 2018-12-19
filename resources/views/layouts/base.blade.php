@@ -14,16 +14,16 @@ DISEÑO PARA TABLAS
   --}}
 
   <!-- Bootstrap core CSS-->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="{{ asset('teme/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
 
   <!-- Custom fonts for this template-->
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="{{ asset('teme/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
 
   <!-- Page level plugin CSS-->
-  <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+  <link href="{{ asset('teme/vendor/datatables/dataTables.bootstrap4.css')}}" rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="css/sb-admin.css" rel="stylesheet">
+  <link href="{{ asset('teme/css/sb-admin.css')}}" rel="stylesheet">
 
 {{--
 DISEÑO PARA TABLAS
@@ -67,7 +67,7 @@ DISEÑO PARA TABLAS
 
     <nav class="navbar navbar-expand navbar-dark bg-danger static-top">
 
-      <a class="navbar-brand mr-1" href="index.html">FACTURA AMAZON UTN</a>
+      <a class="navbar-brand mr-1" href="#">FACTURA AMAZON UTN</a>
 
       <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
 
@@ -95,7 +95,7 @@ DISEÑO PARA TABLAS
               @endif  --}}
           @else
               <li class="nav-item dropdown">
-                  <a id="navbarDropdown" class="navbar-brand mr-1" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                  <a id="navbarDropdown" class="btn btn-danger" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                       {{ Auth::user()->name }} <span class="caret"></span>
                   </a>
 
@@ -130,7 +130,7 @@ DISEÑO PARA TABLAS
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fas fa-fw fa-tasks"></i>
-              <span>Compañia</span>
+              <span>Compañía</span>
             </a>
             <div class="dropdown-menu" aria-labelledby="pagesDropdown">
               <h6 class="dropdown-header">Compañía:</h6>

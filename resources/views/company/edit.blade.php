@@ -27,19 +27,19 @@
                         <div class="form-group row">
                             <label for="ruc" class="col-sm-2 col-form-label">RUC</label>
                             <div class="col-sm-6">
-                                <input required type="text" maxlength="15"  class="form-control" id="ruc" name="ruc" value="{{$company->ruc}}">
+                                <input required type="text" maxlength="13" placeholder="Ej:0000000000001"  class="form-control" id="ruc" name="ruc" value="{{$company->ruc}}">
                              </div>
                         </div>
                         <div class="form-group row">
                             <label for="name" class="col-sm-2 col-form-label">Nombre</label>
                             <div class="col-sm-6">
-                                <input required type="text" maxlength="100" class="form-control" id="name" name="name" value="{{$company->name}}">
+                                <input required type="text" maxlength="100" placeholder="Nombre de la compañía" class="form-control" id="name" name="name" value="{{$company->name}}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="slogan" class="col-sm-2 col-form-label">Eslogan</label>
                             <div class="col-sm-6">
-                                <input required type="text" maxlength="150"  class="form-control" id="slogan" name="slogan" value="{{$company->slogan}}">
+                                <input required type="text" maxlength="150" placeholder="Eslogan de la compañía"  class="form-control" id="slogan" name="slogan" value="{{$company->slogan}}">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -68,7 +68,7 @@
                                         </select>
 
                                     </div>
-                                     <input required type="text" maxlength="150" style="width: 100%" class="form-control" placeholder="escribir contacto" id="contact_desc" name="contact_desc" value="{{$contact->description}}">
+                                     <input required type="text" maxlength="150" style="width: 100%" class="form-control" placeholder="Escribir contacto" id="contact_desc" name="contact_desc" value="{{$contact->description}}">
                                 </div>
                                 @endforeach
 

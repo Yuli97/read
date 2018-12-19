@@ -21,6 +21,7 @@
                 <div class="col-md-12">
                     <div class="card-body">
                             @include('sections.messages')
+                            @include('company.delete')
                         <div class="table-responsive">
                             <table class="table">
                             <thead class="thead-light">
@@ -35,6 +36,7 @@
                             </thead>
                             <tbody>
                                 @foreach ($company as $com)
+
                                     <tr>
                                         <th>{{$com->name}}</th>
                                         <td>{{$com->ruc}}</td>
@@ -47,38 +49,22 @@
                                         </td>
                                         <td>
                                             <a title="Editar" href="{{route('company.edit',$com->id_comp)}}" class="btn btn-success btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                            <a title="Eliminar" data-toggle="modal" data-target="#modalDelete"
+
+                                          {{--  <a title="Eliminar" data-toggle="modal" data-target="#modalDelete"
                                             data-name="{{$com->name}}" href="#"
                                             data-action="{{route('company.destroy',$com->id_comp)}}"
-                                            class="btn btn-danger btn-xs"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                            class="btn btn-danger btn-xs"><i class="fa fa-trash" aria-hidden="true"></i></a>  --}}
+
+                                            {{Form::open(['route'=>['company.destroy',"$com->id_comp"],'method'=>'delete'])}}
+
+                                            <button  type="submit" class="btn btn-danger"> <i class="fa fa-trash" aria-hidden="true"></i>
+                                            </button>
+                                                {{Form::Close()}}
                                         </td>
+
                                     </tr>
 
-                                    <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                              <div class="modal-content">
-                                                <div class="modal-header">
-                                                  <h5 class="modal-title" id="exampleModalLongTitle">Eliminar Datos de Compañía</h5>
-                                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                  </button>
-                                                </div>
-                                                {{Form::open(['route'=>['company.destroy',"$com->id_comp"],'method'=>'delete'])}}
-                                                <div class="modal-body">
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <h6 id="txtEliminar">¿Está seguro de eliminar los datos de la compañía {{$com->name}} ?</h6>
-                                                            </div>
-                                                        </div>
-                                                  </div>
-                                                  <div class="modal-footer">
-                                                    <input type="button" class="btn btn-secondary" data-dismiss="modal" value="Cancelar">
-                                                    <input type="submit" class="btn btn-primary" value="Aceptar">
-                                                  </div>
-                                                  {{Form::Close()}}
-                                              </div>
-                                            </div>
-                                          </div>
+
 
                                 @endforeach
                             </tbody>
@@ -97,7 +83,7 @@
 @prepend('scripts')   <!-- PREPEND ejecuta de urgencia el condigo js -->
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#modalDeletes').on('show.bs.modal', function (event) {
+        $('#modalDelete').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
             var action = button.data('action');
             var name = button.data('name');
