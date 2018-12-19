@@ -27,7 +27,7 @@
                         <div class="form-group row">
                             <label for="ruc" class="col-sm-2 col-form-label">RUC</label>
                             <div class="col-sm-6">
-                                <input required type="text" maxlength="13" placeholder="Ej:0000000000001"  class="form-control" id="ruc" name="ruc" value="{{$company->ruc}}">
+                                <input required type="text" maxlength="13" placeholder="Ej:0000000000001 (13 dígitos)"  class="form-control" id="ruc" name="ruc" value="{{$company->ruc}}">
                              </div>
                         </div>
                         <div class="form-group row">
