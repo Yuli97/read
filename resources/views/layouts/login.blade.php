@@ -57,7 +57,7 @@
                       <div class="form-group">
                         <div class="checkbox">
                           <label>
-                              
+
                             <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                             Remember Password
                           </label>
@@ -70,11 +70,11 @@
                     <div class="text-center">
                       <a class="d-block small mt-3" href="{{ route('register') }}">Registrar una Cuenta</a>
 
-                      @if (Route::has('password.request'))
+                      {{--  @if (Route::has('password.request'))
                       <a class="d-block small" href="{{ route('password.request') }}">
                           {{ __('Olvidé mi contraseña') }}
                       </a>
-                  @endif
+                  @endif  --}}
                     </div>
                   </div>
                 </div>

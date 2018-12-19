@@ -1,4 +1,5 @@
 @extends('layouts.base')
+
 @section('title','FACTURACION UTN| Compañia')
 @section('content')
 <div class="container">
@@ -36,6 +37,7 @@
                             </thead>
                             <tbody>
                                 @foreach ($company as $com)
+
 
                                     <tr>
                                         <th>{{$com->name}}</th>
