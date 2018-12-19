@@ -33,7 +33,7 @@ DISEÑO PARA TABLAS
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title','FACTURACION |AMAZON UTN')</title>
+    <title>@yield('title','FACTURACIÓN |AMAZON UTN')</title>
 
     <!-- Scripts -->
 
@@ -67,7 +67,7 @@ DISEÑO PARA TABLAS
 
     <nav class="navbar navbar-expand navbar-dark bg-danger static-top">
 
-      <a class="navbar-brand mr-1" href="#">FACTURA AMAZON UTN</a>
+      <a class="navbar-brand mr-1" href="#">FACTURACIÓN AMAZON UTN</a>
 
       <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
 
