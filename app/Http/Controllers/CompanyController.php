@@ -87,7 +87,7 @@ class CompanyController extends Controller
         //$contactComp=Contact::where('id_comp','=',$id)->get();
         $company=Company::findOrFail($id);
         //$address=collect($company->Address);
-        return view("company.edit",compact('company','addresses','contacts_k','contactComp'));
+        return view("company.edit",compact('company','addresses','contacts_k'));
 
     }
 
