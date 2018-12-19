@@ -24,7 +24,7 @@ class CompanyRequest extends FormRequest
     public function rules()
     {
         return [
-            'ruc'=>'required|string|max:15|ruc',
+            'ruc'=>'required|string|max:15|ruc|unique:companies',
             'name'=>'required|string|max:100',
             'slogan'=>'required|string|max:150',
             'address' => 'required|int',
