@@ -68,13 +68,13 @@
                         </button>
                     </form>
                     <div class="text-center">
-                      <a class="d-block small mt-3" href="{{ route('register') }}">Registrar una Cuenta</a>
+                      {{--  <a class="d-block small mt-3" href="{{ route('register') }}">Registrar una Cuenta</a>  --}}
 
-                      {{--  @if (Route::has('password.request'))
+                       @if (Route::has('password.request'))
                       <a class="d-block small" href="{{ route('password.request') }}">
                           {{ __('Olvidé mi contraseña') }}
                       </a>
-                  @endif  --}}
+                  @endif  -
                     </div>
                   </div>
                 </div>
