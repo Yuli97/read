@@ -19,7 +19,7 @@
                         <table>
                             <tr>
                                 <td>
-                                    <button v-if="editMode" class="btn btn-success" v-on:click="onClickUpdate"> Guardar cambios</button>
+                                    <button v-if="editMode" class="btn btn-success" v-on:click="onClickUpdate"> Echo</button>
                                     <button v-else class="btn btn-warning" v-on:click="onClickEdit()">Editar</button>
 
                                 </td>

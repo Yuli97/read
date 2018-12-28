@@ -48092,7 +48092,7 @@ var render = function() {
                                 staticClass: "btn btn-success",
                                 on: { click: _vm.onClickUpdate }
                               },
-                              [_vm._v(" Guardar cambios")]
+                              [_vm._v(" Echo")]
                             )
                           : _c(
                               "button",
