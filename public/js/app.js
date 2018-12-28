@@ -48068,7 +48068,7 @@ var render = function() {
                       staticClass: "btn btn-success",
                       on: { click: _vm.onClickUpdate }
                     },
-                    [_vm._v(" Save changes")]
+                    [_vm._v(" Guardar cambios")]
                   )
                 : _c(
                     "button",
@@ -48080,7 +48080,7 @@ var render = function() {
                         }
                       }
                     },
-                    [_vm._v("Edit")]
+                    [_vm._v("Editar")]
                   ),
               _vm._v(" "),
               _c(
@@ -48095,7 +48095,7 @@ var render = function() {
                 },
                 [
                   _vm._v(
-                    "\n                            Delete\n                        "
+                    "\n                            Eliminar\n                        "
                   )
                 ]
               )

@@ -12,10 +12,10 @@
 
                  <input v-if="editMode" type="text" class="form-control" v-model='contact.description'>
                 <p v-else style="color: #3498db;background-color:  #f4f6f6;padding:8px;">{{contact.description}}</p>
-                <button v-if="editMode" class="btn btn-success" v-on:click="onClickUpdate"> Save changes</button>
-                <button v-else class="btn btn-warning" v-on:click="onClickEdit()">Edit</button>
+                <button v-if="editMode" class="btn btn-success" v-on:click="onClickUpdate"> Guardar cambios</button>
+                <button v-else class="btn btn-warning" v-on:click="onClickEdit()">Editar</button>
                 <button class="btn btn-danger" v-on:click="onClickDelete()">
-                                Delete
+                                Eliminar
                             </button>
 
             </div>
