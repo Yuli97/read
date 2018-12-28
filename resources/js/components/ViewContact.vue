@@ -9,14 +9,31 @@
 
             </div>
             <div class="col-sm-9" style="padding-bottom:12px;">
+                <div class="row">
+                    <div class="col-sm-10" >
+                        <input v-if="editMode" type="text" class="form-control" v-model='contact.description'>
+                        <p v-else style="color: #3498db;background-color:  #f4f6f6;padding:8px;">{{contact.description}}</p>
 
-                 <input v-if="editMode" type="text" class="form-control" v-model='contact.description'>
-                <p v-else style="color: #3498db;background-color:  #f4f6f6;padding:8px;">{{contact.description}}</p>
-                <button v-if="editMode" class="btn btn-success" v-on:click="onClickUpdate"> Guardar cambios</button>
-                <button v-else class="btn btn-warning" v-on:click="onClickEdit()">Editar</button>
-                <button class="btn btn-danger" v-on:click="onClickDelete()">
-                                Eliminar
-                            </button>
+                    </div>
+                    <div class="col-sm-1" >
+                        <table>
+                            <tr>
+                                <td>
+                                    <button v-if="editMode" class="btn btn-success" v-on:click="onClickUpdate"> Guardar cambios</button>
+                                    <button v-else class="btn btn-warning" v-on:click="onClickEdit()">Editar</button>
+
+                                </td>
+                                <td>
+                                    <button class="btn btn-danger" v-on:click="onClickDelete()"> Eliminar </button>
+                                </td>
+                            </tr>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
 
             </div>
 

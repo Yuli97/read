@@ -47946,6 +47946,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['contact', 'contacts_k'],
@@ -48023,82 +48040,92 @@ var render = function() {
               staticStyle: { "padding-bottom": "12px" }
             },
             [
-              _vm.editMode
-                ? _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.contact.description,
-                        expression: "contact.description"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    attrs: { type: "text" },
-                    domProps: { value: _vm.contact.description },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-sm-10" }, [
+                  _vm.editMode
+                    ? _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.contact.description,
+                            expression: "contact.description"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.contact.description },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.contact,
+                              "description",
+                              $event.target.value
+                            )
+                          }
                         }
-                        _vm.$set(
-                          _vm.contact,
-                          "description",
-                          $event.target.value
+                      })
+                    : _c(
+                        "p",
+                        {
+                          staticStyle: {
+                            color: "#3498db",
+                            "background-color": "#f4f6f6",
+                            padding: "8px"
+                          }
+                        },
+                        [_vm._v(_vm._s(_vm.contact.description))]
+                      )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-1" }, [
+                  _c("table", [
+                    _c("tr", [
+                      _c("td", [
+                        _vm.editMode
+                          ? _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-success",
+                                on: { click: _vm.onClickUpdate }
+                              },
+                              [_vm._v(" Guardar cambios")]
+                            )
+                          : _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-warning",
+                                on: {
+                                  click: function($event) {
+                                    _vm.onClickEdit()
+                                  }
+                                }
+                              },
+                              [_vm._v("Editar")]
+                            )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-danger",
+                            on: {
+                              click: function($event) {
+                                _vm.onClickDelete()
+                              }
+                            }
+                          },
+                          [_vm._v(" Eliminar ")]
                         )
-                      }
-                    }
-                  })
-                : _c(
-                    "p",
-                    {
-                      staticStyle: {
-                        color: "#3498db",
-                        "background-color": "#f4f6f6",
-                        padding: "8px"
-                      }
-                    },
-                    [_vm._v(_vm._s(_vm.contact.description))]
-                  ),
-              _vm._v(" "),
-              _vm.editMode
-                ? _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-success",
-                      on: { click: _vm.onClickUpdate }
-                    },
-                    [_vm._v(" Guardar cambios")]
-                  )
-                : _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-warning",
-                      on: {
-                        click: function($event) {
-                          _vm.onClickEdit()
-                        }
-                      }
-                    },
-                    [_vm._v("Editar")]
-                  ),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-danger",
-                  on: {
-                    click: function($event) {
-                      _vm.onClickDelete()
-                    }
-                  }
-                },
-                [
-                  _vm._v(
-                    "\n                            Eliminar\n                        "
-                  )
-                ]
-              )
+                      ])
+                    ])
+                  ])
+                ])
+              ])
             ]
           )
         ])
