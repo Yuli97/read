@@ -17,6 +17,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('company', 'CompanyController')->middleware('auth');
+//Auth::routes(['verify' => true]);
+// Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+Route::get('/home', function () {
+    return redirect('/company');
+});
 
+Route::resource('company', 'CompanyController')->middleware('auth');
+Route::get('company/delete/{id}', 'CompanyController@eliminar')->middleware('auth')->name('company.delete');

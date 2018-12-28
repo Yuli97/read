@@ -14,15 +14,20 @@
                 </li>
                 <li class="breadcrumb-item active">Listar Datos</li>
             </ol>
-            <a class="btn btn-primary" href="{{url('company/create')}}" title="Agregar Compañía" role="button">
-                <i class="fa fa-plus-circle" aria-hidden="true"></i>  Nuevo
-            </a>
+
 
             <div class="row justify-content-center">
+
                 <div class="col-md-12">
+
                     <div class="card-body">
                             @include('sections.messages')
                             @include('company.delete')
+                            <a class="btn btn-primary" href="{{url('company/create')}}" title="Agregar Compañía" role="button">
+                                <i class="fa fa-plus-circle" aria-hidden="true"></i>  Nuevo
+                            </a>
+                            <br>
+                            
                         <div class="table-responsive">
                             <table class="table">
                             <thead class="thead-light">
@@ -52,16 +57,19 @@
                                         <td>
                                             <a title="Editar" href="{{route('company.edit',$com->id_comp)}}" class="btn btn-success btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 
-                                          {{--  <a title="Eliminar" data-toggle="modal" data-target="#modalDelete"
+                                          {{-- <a title="Eliminar" data-toggle="modal" data-target="#modalDelete"
                                             data-name="{{$com->name}}" href="#"
                                             data-action="{{route('company.destroy',$com->id_comp)}}"
-                                            class="btn btn-danger btn-xs"><i class="fa fa-trash" aria-hidden="true"></i></a>  --}}
+                                            class="btn btn-danger btn-xs"><i class="fa fa-trash" aria-hidden="true"></i></a>   --}}
 
-                                            {{Form::open(['route'=>['company.destroy',"$com->id_comp"],'method'=>'delete'])}}
+                                             {{-- {{Form::open(['route'=>['company.destroy',"$com->id_comp"],'method'=>'delete'])}}
 
                                             <button  type="submit" class="btn btn-danger"> <i class="fa fa-trash" aria-hidden="true"></i>
                                             </button>
-                                                {{Form::Close()}}
+                                                {{Form::Close()}} --}}
+                                            <a title="Eliminar"
+                                            href="{{route('company.delete',$com->id_comp)}}"
+                                            class="btn btn-danger btn-xs"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                         </td>
 
                                     </tr>

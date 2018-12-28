@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use DB;
 use App\Company;
 use App\Address;
 use App\Contact;
@@ -56,7 +57,9 @@ class CompanyController extends Controller
             $contact->id_comp=$company->id_comp;
             $contact->description=$request->get('description');
             $contact->save();
-            return redirect('company')->with('success','Datos de Compañía registrados');
+            $id=$company->id_comp;
+            //return redirect()->route('company.edit', array('company' => $id))->with('success','Completar Registro');
+            return redirect('company')->with('success','Datos registrados');
         }catch(Exception $e){
             return back()->withErrors(['exception'=>$e->getMessage()])->withInput();
         }
@@ -103,13 +106,12 @@ class CompanyController extends Controller
         try {
 
             $company=Company::updateOrCreate(['id_comp'=>$id],$request->except('id_cont_k','contact_desc'));
-           // $contact=Contact::updateOrCreate(['id_cont'=>$request->get('id_cont_k')],$request->except('address'));
-           // $company->Contact()->sync($request->contact_desc);
-           $contact = Contact::where('id_comp', '=', $id)->first();
-           $contact->id_cont_k=$request->get('id_cont_k');
-           $contact->description=$request->get('contact_desc');
-            $contact->save();
-            return redirect('company')->with('success', 'Datos de Compañía actualizados');
+
+        //    $contact = Contact::where('id_comp', '=', $id)->first();
+        //    $contact->id_cont_k=$request->get('id_cont_k');
+        //    $contact->description=$request->get('contact_desc');
+        //    $contact->save();
+           return redirect('company')->with('success', 'Datos de Compañía actualizados');
         } catch (Exception | QueryException $e) {
             return back()->withErrors(['exception' => $e->getMessage()]);
         }
@@ -124,9 +126,26 @@ class CompanyController extends Controller
     public function destroy($id)
     {
         try{
-            $contact = Contact::where('id_comp', '=', $id)->first();
-            $id_cont=$contact->id_cont;
-            Contact::destroy($id_cont);
+            DB::table('contacts')->where('id_comp',$id)
+            ->delete();
+            //$contact = Contact::where('id_comp', '=', $id)->get();
+            //$id_cont=$contact->id_cont;
+            //Contact::destroy($id_cont);
+            Company::destroy($id);
+            return redirect('company')->with('success','Datos de compañía eliminados');
+        }catch(Exception $e){
+            return back()->withErrors(['exception'=>$e->getMessage()]);
+        }
+
+    }
+    public function eliminar($id)
+    {
+        try{
+            DB::table('contacts')->where('id_comp',$id)
+            ->delete();
+            //$contact = Contact::where('id_comp', '=', $id)->get();
+            //$id_cont=$contact->id_cont;
+            //Contact::destroy($id_cont);
             Company::destroy($id);
             return redirect('company')->with('success','Datos de compañía eliminados');
         }catch(Exception $e){

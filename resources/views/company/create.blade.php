@@ -2,8 +2,7 @@
 @section('title','FACTURACION UTN| Crear Compañia')
 @section('content')
 <div class="container">
-        <div id="content-wrapper">
-                <div class="container-fluid">
+
 
                     <!-- Breadcrumbs-->
                     <ol class="breadcrumb">
@@ -14,6 +13,9 @@
                     </ol>
         <div class="row justify-content-center">
             <div class="col-md-12">
+                    <a class="btn btn-primary" href="{{url('company')}}" title="Regresar al listado" role="button">
+                            <i class="fa fa-reply" aria-hidden="true"></i>
+                    </a>
                 <div class="card">
                     <div class="card-header"> AGREGAR NUEVA COMPAÑIA </div>
                     <div class="card-body">
@@ -70,7 +72,7 @@
 
                             <div class="form-group row">
                                     <div class="col-sm-10">
-                                      <button type="submit" class="btn btn-primary">Guardar</button>
+                                      <button type="submit" class="btn btn-success">Guardar</button>
                                     </div>
                             </div>
                         {!! Form::close() !!}
@@ -78,7 +80,6 @@
                 </div>
             </div>
         </div>
-    </div>
 </div>
-</div>
+
 @endsection

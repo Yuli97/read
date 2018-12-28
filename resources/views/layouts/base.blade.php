@@ -7,13 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <title>@yield('title','FACTURACIÓN |AMAZON UTN')</title>
 
-{{--
-DISEÑO PARA TABLAS
-  --}}
-
-  <!-- Bootstrap core CSS-->
+  <!-- Bootstrap core CSS -->
   <link href="{{ asset('teme/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
 
   <!-- Custom fonts for this template-->
@@ -25,31 +24,11 @@ DISEÑO PARA TABLAS
   <!-- Custom styles for this template-->
   <link href="{{ asset('teme/css/sb-admin.css')}}" rel="stylesheet">
 
-{{--
-DISEÑO PARA TABLAS
-  --}}
-
-
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>@yield('title','FACTURACIÓN |AMAZON UTN')</title>
 
     <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script type="text/javascript" src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
 
-    <!-- Bootstrap core CSS-->
-    <link href="{{ asset('teme/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-
-    <!-- Custom fonts for this template-->
-    <link href="{{ asset('teme/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
-
-    <!-- Page level plugin CSS-->
-    <link href="{{ asset('teme/vendor/datatables/dataTables.bootstrap4.css')}}" rel="stylesheet">
-
-    <!-- Custom styles for this template-->
-    <link href="{{ asset('teme/css/sb-admin.css')}}" rel="stylesheet">
-
-    <!-- Scripts -->
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -115,18 +94,18 @@ DISEÑO PARA TABLAS
       </ul>
 
     </nav>
-    @auth
-    <div id="wrapper">
 
+    <div id="wrapper">
+        @auth
       <!-- Sidebar -->
       <ul class="sidebar navbar-nav">
-        <li class="nav-item">
+        {{-- <li class="nav-item">
           <a class="nav-link {{strpos(Request::path(), 'company') !== false ? 'active' : ''}}"
           href="{{ url('home') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Panel</span>
           </a>
-        </li>
+        </li> --}}
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fas fa-fw fa-tasks"></i>
@@ -141,10 +120,33 @@ DISEÑO PARA TABLAS
             </div>
 
       </ul>
+      @endauth
 
-    <!-- /#wrapper -->
-    @endauth
-    @yield('content')
+
+    <div id="content-wrapper">
+        <div class="container-fluid">
+                    @yield('content')
+        </div>
+
+
+
+
+        <!-- Sticky Footer -->
+        <footer class="sticky-footer">
+        <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+            <span>Copyright © FACTURACIÓN | AMAZON - UTN 2018</span>
+            </div>
+        </div>
+        </footer>
+
+  </div>
+  <!-- /.content-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+
 
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
@@ -152,7 +154,7 @@ DISEÑO PARA TABLAS
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    {{--  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -168,9 +170,9 @@ DISEÑO PARA TABLAS
           </div>
         </div>
       </div>
-    </div>
+    </div>  --}}
     <!-- Core plugin JavaScript-->
-    <script src="{{ asset('teme/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+    {{--  <script src="{{ asset('teme/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
 
     <!-- Page level plugin JavaScript-->
     <script src="{{ asset('teme/vendor/chart.js/Chart.min.js')}}"></script>
@@ -186,8 +188,13 @@ DISEÑO PARA TABLAS
 
     <!-- Bootstrap core JavaScript-->
     <script src="{{ asset('teme/vendor/jquery/jquery.min.js')}}"></script>
-    <script src="{{ asset('teme/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{ asset('teme/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>  --}}
 
-  </body>
+    <!-- Scripts -->
+
+    {{--  <script type="text/javascript" src="{{asset('teme/vendor/bootstrap/js/bootstrap.js')}}"></script>  --}}
+
+
+    </body>
 
 </html>
