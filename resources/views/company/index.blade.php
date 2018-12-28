@@ -27,7 +27,7 @@
                                 <i class="fa fa-plus-circle" aria-hidden="true"></i>  Nuevo
                             </a>
                             <br>
-                            
+
                         <div class="table-responsive">
                             <table class="table">
                             <thead class="thead-light">
@@ -57,19 +57,19 @@
                                         <td>
                                             <a title="Editar" href="{{route('company.edit',$com->id_comp)}}" class="btn btn-success btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 
-                                          {{-- <a title="Eliminar" data-toggle="modal" data-target="#modalDelete"
+                                           <a title="Eliminar" data-toggle="modal" data-target="#modalDelete"
                                             data-name="{{$com->name}}" href="#"
                                             data-action="{{route('company.destroy',$com->id_comp)}}"
-                                            class="btn btn-danger btn-xs"><i class="fa fa-trash" aria-hidden="true"></i></a>   --}}
+                                            class="btn btn-danger btn-xs"><i class="fa fa-trash" aria-hidden="true"></i></a>
 
                                              {{-- {{Form::open(['route'=>['company.destroy',"$com->id_comp"],'method'=>'delete'])}}
 
                                             <button  type="submit" class="btn btn-danger"> <i class="fa fa-trash" aria-hidden="true"></i>
                                             </button>
                                                 {{Form::Close()}} --}}
-                                            <a title="Eliminar"
+                                            {{--  <a title="Eliminar"
                                             href="{{route('company.delete',$com->id_comp)}}"
-                                            class="btn btn-danger btn-xs"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                            class="btn btn-danger btn-xs"><i class="fa fa-trash" aria-hidden="true"></i></a>  --}}
                                         </td>
 
                                     </tr>
@@ -89,18 +89,16 @@
         </div>
     </div>
 </div>
-@endsection
-@prepend('scripts')   <!-- PREPEND ejecuta de urgencia el condigo js -->
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#modalDelete').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget);
-            var action = button.data('action');
-            var name = button.data('name');
-            var modal = $(this);
-            modal.find(".modal-content #txtEliminar").html("¿Está seguro de eliminar los datos de la compañía <b>" + name + "</b>?");
-            modal.find(".modal-content form").attr('action', action);
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#modalDelete').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget);
+                var action = button.data('action');
+                var name = button.data('name');
+                var modal = $(this);
+                modal.find(".modal-content #txtEliminar").html("¿Está seguro de eliminar los datos de la compañía <b>" + name + "</b>?");
+                modal.find(".modal-content form").attr('action', action);
+            });
         });
-    });
-</script>
-@endprepend
+    </script>
+@endsection

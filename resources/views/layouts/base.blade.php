@@ -131,14 +131,14 @@
 
 
 
-        <!-- Sticky Footer -->
+        {{--  <!-- Sticky Footer -->
         <footer class="sticky-footer">
         <div class="container my-auto">
             <div class="copyright text-center my-auto">
             <span>Copyright © FACTURACIÓN | AMAZON - UTN 2018</span>
             </div>
         </div>
-        </footer>
+        </footer>  --}}
 
   </div>
   <!-- /.content-wrapper -->
