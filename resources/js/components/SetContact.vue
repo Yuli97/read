@@ -5,14 +5,15 @@
         <div class="col-sm-2">
             <select required class="form-control" id="id_cont_k" name="id_cont_k" >
             <option value="">--Seleccionar--</option>
-            <option v-for="cont_k in contacts_k" v-on:click="setId(cont_k.id_cont_k)">{{cont_k.description}} </option>
+            <option v-for="cont_k in contacts_k" v-on:click="setId(cont_k)">{{cont_k.description}} </option>
             </select>
 
 
         </div>
 
         <div class="col-sm-8">
-            <input v-model="description"  type="text" maxlength="150" style="width: 100%;border-color:  #3498db ;" class="form-control" placeholder="Escribir nuevo contacto" id="contact_desc" name="contact_desc">
+            <input v-if="inputEmail" v-model="description" maxlength="150" type="email" style="width: 100%;border-color:  #3498db ;" class="form-control" placeholder="Escribir nuevo contacto" id="contact_desc" name="contact_desc">
+            <input v-else v-model="description"  type="text" maxlength="10" style="width: 100%;border-color:  #3498db ;" class="form-control" placeholder="Escribir nuevo contacto" id="contact_desc" name="contact_desc">
 
         </div>
         <div class="col-sm-2">
@@ -33,7 +34,8 @@
          data(){
             return{
                 description:'',
-                id_cont_k:null
+                id_cont_k:null,
+                inputEmail:false
             }
         },
          methods: {
@@ -47,18 +49,48 @@
                 console.log('id: '+params.id_cont_k);
                 this.description='';
                 //Registrar a db
-                axios.post('/api/contact',params)
-                .then((response)=> {
-                    const contact=response.data;
-                    console.log('aqui:', contact.description);
-                    this.$emit('new', contact);// Generar evento 'new' q recibe en 'TheThought'
 
-                });
+
+                if (this.inputEmail){
+                  /*  axios.post('/api/contact',params)
+                             .then((response)=> {
+                                 const contact=response.data;
+                                 console.log('aqui:', contact.description);
+                                 this.$emit('new', contact);// Generar evento 'new' q recibe en 'TheThought'
+                             }); */
+                   if (/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(params.description)){
+                          axios.post('/api/contact',params)
+                             .then((response)=> {
+                                 const contact=response.data;
+                                 console.log('aqui:', contact.description);
+                                 this.$emit('new', contact);// Generar evento 'new' q recibe en 'TheThought'
+                             });
+                            } else {
+                                this.$emit('refresh','La dirección de email es incorrecta.');
+                            }
+
+                }else if(!this.inputEmail){
+                    if(/^\D*\d{7,10}$/.test(params.description)){
+                      axios.post('/api/contact',params)
+                        .then((response)=> {
+                            const contact=response.data;
+                            console.log('aqui:', contact.description);
+                            this.$emit('new', contact);// Generar evento 'new' q recibe en 'TheThought'
+                        });
+                    }else{
+                            this.$emit('refresh','El contacto debe tener entre 7 y 10 dígitos');
+                    }
+                }
 
 
             },
-            setId(a){
-                this.id_cont_k=a
+            setId(cont_k){
+                this.id_cont_k=cont_k.id_cont_k;
+                if(cont_k.description == 'email'){
+                this.inputEmail=true;}
+                else{
+                    this.inputEmail=false;
+                }
             }
         }
 

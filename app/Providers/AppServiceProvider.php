@@ -29,8 +29,10 @@ class AppServiceProvider extends ServiceProvider
 
     private function validaciones()
     {
-        Validator::extend('ruc', function ($attribute, $value, $parametes) {
-            return preg_match('/([0-9]){10}00[0-9]/', $value);
-        });
+         Validator::extend('ruc', function ($attribute, $value, $parametes) {
+             return preg_match('/^([0][1-9]|[1][0-9]|[2][0-4])[0-9]{11}$/', $value);
+         });
+
+
     }
 }

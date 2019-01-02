@@ -6,17 +6,21 @@
              <!-- Evento 'new' que recibe del hijo 'form-thought-component' -->
                 <setContact :company='company'
                 :contacts_k='contacts_k'
-                @new='addContact'> <!--Metodo al cual se dirige-->
+                @new='addContact'
+                @refresh='refresh(...arguments)'> <!--Metodo al cual se dirige-->
                 </setContact>
                 <viewContact
                 v-for='(contact) in contacts'
                 :key='contact.id_cont'
+                :company='company'
                 :contact='contact'
                 :contacts_k='contacts_k'
-                @refresh='refresh()'
+                @refresh='refresh(...arguments)'
                 >
 
                 </viewContact>
+                <p v-if="countNull" style="color:red">{{mess}}</p>
+                <p v-else></p>
         </div>
 
 
@@ -27,8 +31,11 @@
         props:['contacts_k','company'],
         data() {
             return {
-                contacts:[]
+                contacts:[],
+                countNull:false,
+                mess:''
             }
+
         },
          mounted() {
             console.log('Component mounted.')
@@ -38,13 +45,27 @@
         },
         methods:{
             addContact(contact) {
+                this.countNull=false;
+                console.log('ok-si');
                 this.contacts.push(contact);
             },
-            refresh(){
+            refresh(mess){
+                if (mess != '') {
+                        this.countNull=true;
+                        this.mess=mess;
+                        console.log(mess);
+                    } else {
+                        this.countNull=false;
+                        this.mess='';
+                        console.log('ok');
+                }
+
                 axios.get('/api/contact/'+this.company.id_comp).then((res)=>{
                 this.contacts=res.data;
             });
+
             }
+
         }
 
 

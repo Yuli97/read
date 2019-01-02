@@ -34,9 +34,11 @@ class CompanyController extends Controller
      */
     public function create()
     {
+        $addressesL1=Address::where('level','=','1')->get();
+        $addressesL2=Address::where('level','=','2')->get();
         $addresses=Address::where('level','=','3')->get();
         $contacts_k=ContactKind::get();
-        return view('company.create',compact('addresses','contacts_k'));
+        return view('company.create',compact('addresses','contacts_k','addressesL2','addressesL1'));
     }
 
     /**
@@ -52,11 +54,11 @@ class CompanyController extends Controller
             $company->fill($request->except('address'));
             $company->address=$request->get('address');
             $company->save();
-            $contact=new Contact;
-            $contact->id_cont_k=$request->get('id_cont_k');
-            $contact->id_comp=$company->id_comp;
-            $contact->description=$request->get('description');
-            $contact->save();
+            // $contact=new Contact;
+            // $contact->id_cont_k=$request->get('id_cont_k');
+            // $contact->id_comp=$company->id_comp;
+            // $contact->description=$request->get('description');
+            // $contact->save();
             $id=$company->id_comp;
             //return redirect()->route('company.edit', array('company' => $id))->with('success','Completar Registro');
             return redirect('company')->with('success','Datos registrados');
@@ -86,11 +88,13 @@ class CompanyController extends Controller
     public function edit($id)
     {
         $contacts_k=ContactKind::get();
+        $addressesL1=Address::where('level','=','1')->get();
+        $addressesL2=Address::where('level','=','2')->get();
         $addresses=Address::where('level','=','3')->get();
         //$contactComp=Contact::where('id_comp','=',$id)->get();
         $company=Company::findOrFail($id);
         //$address=collect($company->Address);
-        return view("company.edit",compact('company','addresses','contacts_k'));
+        return view("company.edit",compact('company','addresses','addressesL2','addressesL1','contacts_k'));
 
     }
 

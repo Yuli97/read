@@ -37,9 +37,9 @@ class CompanyRequest extends FormRequest
                 'ruc'=>'required|string|max:15|ruc|unique:companies',
                 'name'=>'required|string|max:100',
                 'slogan'=>'required|string|max:150',
-                'address' => 'required|int',
-                'id_cont_k' => 'nullable|int',
-                'description' =>'nullable|string|max:120'
+                'address' => 'required|int'
+                //'id_cont_k' => 'nullable|int',
+                //'description' =>'nullable|string|max:120'
             ];
         }
     }

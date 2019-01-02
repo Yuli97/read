@@ -98,9 +98,19 @@ class ContactController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id,$id_c)
     {
-        $contact=Contact::find($id);
-        $contact->delete();
+        $contacts=DB::table('contacts')->where('id_comp',$id_c)
+        ->select(DB::raw('count(*) as comp_count'))
+        ->get();
+        $count=($contacts[0]->comp_count);
+        if ($count >=1) {
+            $contact=Contact::find($id);
+            $contact->delete();
+        } else {
+            return 'No puede eliminar el único contacto existente';
+        }
+
+
     }
 }

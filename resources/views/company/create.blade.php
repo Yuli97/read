@@ -40,7 +40,7 @@
                                     <input required type="text" maxlength="150" placeholder="Eslogan de la compañía" class="form-control" id="slogan" name="slogan" value="{{old('slogan')}}">
                                 </div>
                             </div>
-                            <div class="form-group row">
+                            {{--  <div class="form-group row">
                                 <label for="address" class="col-sm-2 col-form-label">CIUDAD</label>
                                     <div class="col-sm-8">
                                         @foreach ($addresses as $addr)
@@ -52,8 +52,34 @@
                                                 </div>
                                         @endforeach
                                     </div>
-                            </div>
+                            </div>  --}}
                             <div class="form-group row">
+                                    <label for="address" class="col-sm-2 col-form-label">Ciudad</label>
+                                        <div class="col-sm-6">
+
+                                            <div class="">
+                                                <select required class="form-control"  id="address" name="address" >
+                                                    @foreach($addresses as $addr)
+                                                    @foreach($addressesL2 as $addrL2)
+                                                    @foreach($addressesL1 as $addrL1)
+                                                    @if ($addr->id_addr_m == $addrL2->id_addr && $addrL2->id_addr_m == $addrL1->id_addr )
+                                                    <option value="{{$addr->id_addr}}">{{$addr->description}} - {{$addrL2->description }}
+                                                            - {{ $addrL1->description}}
+                                                    </option>
+
+
+                                                    @endif
+
+                                                    @endforeach
+                                                    @endforeach
+                                                    @endforeach
+                                                </select>
+
+                                            </div>
+
+                                        </div>
+                            </div>
+                             {{--  <div class="form-group row">
                                     <label for="id_cont_k" class="col-sm-2 col-form-label">CONTACTO</label>
                                         <div class="col-sm-4">
                                             <div class="">
@@ -66,9 +92,10 @@
                                             </div>
                                             <input required type="text"  maxlength="150" style="width: 100%" class="form-control" placeholder="Escribir contacto {{ ($cont_k->id_cont_k)==2 ? 'cell':''  }}" id="description" name="description" value="{{old('description')}}">
                                         </div>
-
-
-                            </div>
+                            </div>  --}}
+                            {{--  <div id="app">
+                            <newcontact :contacts_k="{{json_encode($contacts_k)}}"></newcontact>
+                            </div>  --}}
 
                             <div class="form-group row">
                                     <div class="col-sm-10">
@@ -81,5 +108,4 @@
             </div>
         </div>
 </div>
-
 @endsection

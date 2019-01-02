@@ -16,4 +16,5 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::resource('contact', 'ContactController');
+Route::resource('contact', 'ContactController')->except('destroy');
+Route::delete('contact/delete/{id}/{id_c}', 'ContactController@destroy');

@@ -402,110 +402,6 @@ module.exports = g;
 
 /***/ }),
 /* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-var utils = __webpack_require__(0);
-var normalizeHeaderName = __webpack_require__(22);
-
-var DEFAULT_CONTENT_TYPE = {
-  'Content-Type': 'application/x-www-form-urlencoded'
-};
-
-function setContentTypeIfUnset(headers, value) {
-  if (!utils.isUndefined(headers) && utils.isUndefined(headers['Content-Type'])) {
-    headers['Content-Type'] = value;
-  }
-}
-
-function getDefaultAdapter() {
-  var adapter;
-  if (typeof XMLHttpRequest !== 'undefined') {
-    // For browsers use XHR adapter
-    adapter = __webpack_require__(8);
-  } else if (typeof process !== 'undefined') {
-    // For node use HTTP adapter
-    adapter = __webpack_require__(8);
-  }
-  return adapter;
-}
-
-var defaults = {
-  adapter: getDefaultAdapter(),
-
-  transformRequest: [function transformRequest(data, headers) {
-    normalizeHeaderName(headers, 'Content-Type');
-    if (utils.isFormData(data) ||
-      utils.isArrayBuffer(data) ||
-      utils.isBuffer(data) ||
-      utils.isStream(data) ||
-      utils.isFile(data) ||
-      utils.isBlob(data)
-    ) {
-      return data;
-    }
-    if (utils.isArrayBufferView(data)) {
-      return data.buffer;
-    }
-    if (utils.isURLSearchParams(data)) {
-      setContentTypeIfUnset(headers, 'application/x-www-form-urlencoded;charset=utf-8');
-      return data.toString();
-    }
-    if (utils.isObject(data)) {
-      setContentTypeIfUnset(headers, 'application/json;charset=utf-8');
-      return JSON.stringify(data);
-    }
-    return data;
-  }],
-
-  transformResponse: [function transformResponse(data) {
-    /*eslint no-param-reassign:0*/
-    if (typeof data === 'string') {
-      try {
-        data = JSON.parse(data);
-      } catch (e) { /* Ignore */ }
-    }
-    return data;
-  }],
-
-  /**
-   * A timeout in milliseconds to abort a request. If set to 0 (default) a
-   * timeout is not created.
-   */
-  timeout: 0,
-
-  xsrfCookieName: 'XSRF-TOKEN',
-  xsrfHeaderName: 'X-XSRF-TOKEN',
-
-  maxContentLength: -1,
-
-  validateStatus: function validateStatus(status) {
-    return status >= 200 && status < 300;
-  }
-};
-
-defaults.headers = {
-  common: {
-    'Accept': 'application/json, text/plain, */*'
-  }
-};
-
-utils.forEach(['delete', 'get', 'head'], function forEachMethodNoData(method) {
-  defaults.headers[method] = {};
-});
-
-utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
-  defaults.headers[method] = utils.merge(DEFAULT_CONTENT_TYPE);
-});
-
-module.exports = defaults;
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
-
-/***/ }),
-/* 3 */
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -612,6 +508,110 @@ module.exports = function normalizeComponent (
   }
 }
 
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+var utils = __webpack_require__(0);
+var normalizeHeaderName = __webpack_require__(22);
+
+var DEFAULT_CONTENT_TYPE = {
+  'Content-Type': 'application/x-www-form-urlencoded'
+};
+
+function setContentTypeIfUnset(headers, value) {
+  if (!utils.isUndefined(headers) && utils.isUndefined(headers['Content-Type'])) {
+    headers['Content-Type'] = value;
+  }
+}
+
+function getDefaultAdapter() {
+  var adapter;
+  if (typeof XMLHttpRequest !== 'undefined') {
+    // For browsers use XHR adapter
+    adapter = __webpack_require__(8);
+  } else if (typeof process !== 'undefined') {
+    // For node use HTTP adapter
+    adapter = __webpack_require__(8);
+  }
+  return adapter;
+}
+
+var defaults = {
+  adapter: getDefaultAdapter(),
+
+  transformRequest: [function transformRequest(data, headers) {
+    normalizeHeaderName(headers, 'Content-Type');
+    if (utils.isFormData(data) ||
+      utils.isArrayBuffer(data) ||
+      utils.isBuffer(data) ||
+      utils.isStream(data) ||
+      utils.isFile(data) ||
+      utils.isBlob(data)
+    ) {
+      return data;
+    }
+    if (utils.isArrayBufferView(data)) {
+      return data.buffer;
+    }
+    if (utils.isURLSearchParams(data)) {
+      setContentTypeIfUnset(headers, 'application/x-www-form-urlencoded;charset=utf-8');
+      return data.toString();
+    }
+    if (utils.isObject(data)) {
+      setContentTypeIfUnset(headers, 'application/json;charset=utf-8');
+      return JSON.stringify(data);
+    }
+    return data;
+  }],
+
+  transformResponse: [function transformResponse(data) {
+    /*eslint no-param-reassign:0*/
+    if (typeof data === 'string') {
+      try {
+        data = JSON.parse(data);
+      } catch (e) { /* Ignore */ }
+    }
+    return data;
+  }],
+
+  /**
+   * A timeout in milliseconds to abort a request. If set to 0 (default) a
+   * timeout is not created.
+   */
+  timeout: 0,
+
+  xsrfCookieName: 'XSRF-TOKEN',
+  xsrfHeaderName: 'X-XSRF-TOKEN',
+
+  maxContentLength: -1,
+
+  validateStatus: function validateStatus(status) {
+    return status >= 200 && status < 300;
+  }
+};
+
+defaults.headers = {
+  common: {
+    'Accept': 'application/json, text/plain, */*'
+  }
+};
+
+utils.forEach(['delete', 'get', 'head'], function forEachMethodNoData(method) {
+  defaults.headers[method] = {};
+});
+
+utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
+  defaults.headers[method] = utils.merge(DEFAULT_CONTENT_TYPE);
+});
+
+module.exports = defaults;
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
 
 /***/ }),
 /* 4 */
@@ -14028,7 +14028,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(13);
-module.exports = __webpack_require__(49);
+module.exports = __webpack_require__(52);
 
 
 /***/ }),
@@ -14057,6 +14057,7 @@ window.Vue = __webpack_require__(37);
 Vue.component('Contact', __webpack_require__(40));
 Vue.component('setContact', __webpack_require__(43));
 Vue.component('viewContact', __webpack_require__(46));
+Vue.component('newcontact', __webpack_require__(49));
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key)))
@@ -35241,7 +35242,7 @@ module.exports = __webpack_require__(19);
 var utils = __webpack_require__(0);
 var bind = __webpack_require__(6);
 var Axios = __webpack_require__(21);
-var defaults = __webpack_require__(2);
+var defaults = __webpack_require__(3);
 
 /**
  * Create an instance of Axios
@@ -35324,7 +35325,7 @@ function isSlowBuffer (obj) {
 "use strict";
 
 
-var defaults = __webpack_require__(2);
+var defaults = __webpack_require__(3);
 var utils = __webpack_require__(0);
 var InterceptorManager = __webpack_require__(30);
 var dispatchRequest = __webpack_require__(31);
@@ -35863,7 +35864,7 @@ module.exports = InterceptorManager;
 var utils = __webpack_require__(0);
 var transformData = __webpack_require__(32);
 var isCancel = __webpack_require__(10);
-var defaults = __webpack_require__(2);
+var defaults = __webpack_require__(3);
 var isAbsoluteURL = __webpack_require__(33);
 var combineURLs = __webpack_require__(34);
 
@@ -47478,7 +47479,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(3)
+var normalizeComponent = __webpack_require__(2)
 /* script */
 var __vue_script__ = __webpack_require__(41)
 /* template */
@@ -47550,12 +47551,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['contacts_k', 'company'],
     data: function data() {
         return {
-            contacts: []
+            contacts: [],
+            countNull: false,
+            mess: ''
         };
     },
     mounted: function mounted() {
@@ -47569,10 +47576,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         addContact: function addContact(contact) {
+            this.countNull = false;
+            console.log('ok-si');
             this.contacts.push(contact);
         },
-        refresh: function refresh() {
+        refresh: function refresh(mess) {
             var _this2 = this;
+
+            if (mess != '') {
+                this.countNull = true;
+                this.mess = mess;
+                console.log(mess);
+            } else {
+                this.countNull = false;
+                this.mess = '';
+                console.log('ok');
+            }
 
             axios.get('/api/contact/' + this.company.id_comp).then(function (res) {
                 _this2.contacts = res.data;
@@ -47603,20 +47622,35 @@ var render = function() {
       [
         _c("setContact", {
           attrs: { company: _vm.company, contacts_k: _vm.contacts_k },
-          on: { new: _vm.addContact }
+          on: {
+            new: _vm.addContact,
+            refresh: function($event) {
+              _vm.refresh.apply(void 0, arguments)
+            }
+          }
         }),
         _vm._v(" "),
         _vm._l(_vm.contacts, function(contact) {
           return _c("viewContact", {
             key: contact.id_cont,
-            attrs: { contact: contact, contacts_k: _vm.contacts_k },
+            attrs: {
+              company: _vm.company,
+              contact: contact,
+              contacts_k: _vm.contacts_k
+            },
             on: {
               refresh: function($event) {
-                _vm.refresh()
+                _vm.refresh.apply(void 0, arguments)
               }
             }
           })
-        })
+        }),
+        _vm._v(" "),
+        _vm.countNull
+          ? _c("p", { staticStyle: { color: "red" } }, [
+              _vm._v(_vm._s(_vm.mess))
+            ])
+          : _c("p")
       ],
       2
     )
@@ -47637,7 +47671,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(3)
+var normalizeComponent = __webpack_require__(2)
 /* script */
 var __vue_script__ = __webpack_require__(44)
 /* template */
@@ -47714,13 +47748,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['company', 'contacts_k'],
     data: function data() {
         return {
             description: '',
-            id_cont_k: null
+            id_cont_k: null,
+            inputEmail: false
         };
     },
 
@@ -47737,14 +47773,43 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             console.log('id: ' + params.id_cont_k);
             this.description = '';
             //Registrar a db
-            axios.post('/api/contact', params).then(function (response) {
-                var contact = response.data;
-                console.log('aqui:', contact.description);
-                _this.$emit('new', contact); // Generar evento 'new' q recibe en 'TheThought'
-            });
+
+
+            if (this.inputEmail) {
+                /*  axios.post('/api/contact',params)
+                           .then((response)=> {
+                               const contact=response.data;
+                               console.log('aqui:', contact.description);
+                               this.$emit('new', contact);// Generar evento 'new' q recibe en 'TheThought'
+                           }); */
+                if (/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(params.description)) {
+                    axios.post('/api/contact', params).then(function (response) {
+                        var contact = response.data;
+                        console.log('aqui:', contact.description);
+                        _this.$emit('new', contact); // Generar evento 'new' q recibe en 'TheThought'
+                    });
+                } else {
+                    this.$emit('refresh', 'La dirección de email es incorrecta.');
+                }
+            } else if (!this.inputEmail) {
+                if (/^\D*\d{7,10}$/.test(params.description)) {
+                    axios.post('/api/contact', params).then(function (response) {
+                        var contact = response.data;
+                        console.log('aqui:', contact.description);
+                        _this.$emit('new', contact); // Generar evento 'new' q recibe en 'TheThought'
+                    });
+                } else {
+                    this.$emit('refresh', 'El contacto debe tener entre 7 y 10 dígitos');
+                }
+            }
         },
-        setId: function setId(a) {
-            this.id_cont_k = a;
+        setId: function setId(cont_k) {
+            this.id_cont_k = cont_k.id_cont_k;
+            if (cont_k.description == 'email') {
+                this.inputEmail = true;
+            } else {
+                this.inputEmail = false;
+            }
         }
     }
 
@@ -47790,7 +47855,7 @@ var render = function() {
                     {
                       on: {
                         click: function($event) {
-                          _vm.setId(cont_k.id_cont_k)
+                          _vm.setId(cont_k)
                         }
                       }
                     },
@@ -47803,34 +47868,63 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-sm-8" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.description,
-                  expression: "description"
-                }
-              ],
-              staticClass: "form-control",
-              staticStyle: { width: "100%", "border-color": "#3498db" },
-              attrs: {
-                type: "text",
-                maxlength: "150",
-                placeholder: "Escribir nuevo contacto",
-                id: "contact_desc",
-                name: "contact_desc"
-              },
-              domProps: { value: _vm.description },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
+            _vm.inputEmail
+              ? _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.description,
+                      expression: "description"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  staticStyle: { width: "100%", "border-color": "#3498db" },
+                  attrs: {
+                    maxlength: "150",
+                    type: "email",
+                    placeholder: "Escribir nuevo contacto",
+                    id: "contact_desc",
+                    name: "contact_desc"
+                  },
+                  domProps: { value: _vm.description },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.description = $event.target.value
+                    }
                   }
-                  _vm.description = $event.target.value
-                }
-              }
-            })
+                })
+              : _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.description,
+                      expression: "description"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  staticStyle: { width: "100%", "border-color": "#3498db" },
+                  attrs: {
+                    type: "text",
+                    maxlength: "10",
+                    placeholder: "Escribir nuevo contacto",
+                    id: "contact_desc",
+                    name: "contact_desc"
+                  },
+                  domProps: { value: _vm.description },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.description = $event.target.value
+                    }
+                  }
+                })
           ]),
           _vm._v(" "),
           _vm._m(0)
@@ -47872,7 +47966,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(3)
+var normalizeComponent = __webpack_require__(2)
 /* script */
 var __vue_script__ = __webpack_require__(47)
 /* template */
@@ -47963,9 +48057,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['contact', 'contacts_k'],
+    props: ['contact', 'contacts_k', 'company'],
     data: function data() {
         return {
             // verifica si el componente se esta editando o no
@@ -47983,15 +48084,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var params = {
                 description: this.contact.description
             };
-            axios.put('/api/contact/' + this.contact.id_cont, params).then(function (res) {
-                _this.editMode = false;
-            });
+
+            if (this.contact.id_cont_k == '3') {
+                if (/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(this.contact.description)) {
+                    axios.put('/api/contact/' + this.contact.id_cont, params).then(function (res) {
+                        _this.editMode = false;
+                    });
+                } else {
+                    this.$emit('refresh', 'La dirección de email es incorrecta.');
+                }
+            } else if (this.contact.id_cont_k == '1' || this.contact.id_cont_k == '2') {
+                if (/^\D*\d{7,10}$/.test(this.contact.description)) {
+                    axios.put('/api/contact/' + this.contact.id_cont, params).then(function (res) {
+                        _this.editMode = false;
+                        _this.$emit('refresh', '');
+                    });
+                } else {
+                    this.$emit('refresh', 'El contacto debe tener entre 7 y 10 dígitos');
+                }
+            }
         },
         onClickDelete: function onClickDelete() {
             var _this2 = this;
 
-            axios.delete('/api/contact/' + this.contact.id_cont).then(function () {
-                _this2.$emit('refresh');
+            axios.delete('/api/contact/delete/' + this.contact.id_cont + '/' + this.company.id_comp).then(function (response) {
+                var mess = response.data;
+                _this2.$emit('refresh', mess);
             });
         }
     }
@@ -48042,7 +48160,7 @@ var render = function() {
             [
               _c("div", { staticClass: "row" }, [
                 _c("div", { staticClass: "col-sm-10" }, [
-                  _vm.editMode
+                  _vm.editMode && _vm.contact.id_cont_k == "3"
                     ? _c("input", {
                         directives: [
                           {
@@ -48053,7 +48171,33 @@ var render = function() {
                           }
                         ],
                         staticClass: "form-control",
-                        attrs: { type: "text" },
+                        attrs: { required: "", type: "email" },
+                        domProps: { value: _vm.contact.description },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.contact,
+                              "description",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    : _vm.editMode && _vm.contact.description != "email"
+                    ? _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.contact.description,
+                            expression: "contact.description"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { maxlength: "10", type: "text" },
                         domProps: { value: _vm.contact.description },
                         on: {
                           input: function($event) {
@@ -48089,22 +48233,33 @@ var render = function() {
                           ? _c(
                               "button",
                               {
-                                staticClass: "btn btn-success",
-                                on: { click: _vm.onClickUpdate }
+                                staticClass: "btn btn-primary",
+                                attrs: { type: "submit", title: "Save" },
+                                on: {
+                                  click: function($event) {
+                                    _vm.onClickUpdate()
+                                  }
+                                }
                               },
-                              [_vm._v(" Echo")]
+                              [_c("span", { staticClass: "fa fa-check" })]
                             )
                           : _c(
                               "button",
                               {
-                                staticClass: "btn btn-warning",
+                                staticClass: "btn btn-success btn-xs",
+                                attrs: { title: "Editar" },
                                 on: {
                                   click: function($event) {
                                     _vm.onClickEdit()
                                   }
                                 }
                               },
-                              [_vm._v("Editar")]
+                              [
+                                _c("i", {
+                                  staticClass: "fa fa-pencil-square-o",
+                                  attrs: { "aria-hidden": "true" }
+                                })
+                              ]
                             )
                       ]),
                       _vm._v(" "),
@@ -48112,14 +48267,20 @@ var render = function() {
                         _c(
                           "button",
                           {
-                            staticClass: "btn btn-danger",
+                            staticClass: "btn btn-danger btn-xs",
+                            attrs: { title: "Eliminar" },
                             on: {
                               click: function($event) {
                                 _vm.onClickDelete()
                               }
                             }
                           },
-                          [_vm._v(" Eliminar ")]
+                          [
+                            _c("i", {
+                              staticClass: "fa fa-trash",
+                              attrs: { "aria-hidden": "true" }
+                            })
+                          ]
                         )
                       ])
                     ])
@@ -48145,6 +48306,221 @@ if (false) {
 
 /***/ }),
 /* 49 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(50)
+/* template */
+var __vue_template__ = __webpack_require__(51)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/NewContact.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-a7e509ea", Component.options)
+  } else {
+    hotAPI.reload("data-v-a7e509ea", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 50 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['contacts_k'],
+    data: function data() {
+        return {
+            description: '',
+            inputEmail: false
+        };
+    },
+
+    methods: {
+        setId: function setId(cont_k) {
+            this.id_cont_k = cont_k.id_cont_k;
+            if (cont_k.description == 'email') {
+                this.inputEmail = true;
+            } else {
+                this.inputEmail = false;
+            }
+        }
+    }
+});
+
+/***/ }),
+/* 51 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-sm-2" }, [
+        _c(
+          "select",
+          {
+            staticClass: "form-control",
+            attrs: { required: "", id: "id_cont_k", name: "id_cont_k" }
+          },
+          [
+            _c("option", { attrs: { value: "" } }, [_vm._v("--Seleccionar--")]),
+            _vm._v(" "),
+            _vm._l(_vm.contacts_k, function(cont_k) {
+              return _c(
+                "option",
+                {
+                  attrs: { value: "1" },
+                  on: {
+                    click: function($event) {
+                      _vm.setId(cont_k)
+                    }
+                  }
+                },
+                [_vm._v(_vm._s(cont_k.description) + " ")]
+              )
+            })
+          ],
+          2
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-8" }, [
+        _vm.inputEmail
+          ? _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.description,
+                  expression: "description"
+                }
+              ],
+              staticClass: "form-control",
+              staticStyle: { width: "100%", "border-color": "#3498db" },
+              attrs: {
+                maxlength: "150",
+                type: "email",
+                placeholder: "Escribir nuevo contacto",
+                id: "description",
+                name: "description"
+              },
+              domProps: { value: _vm.description },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.description = $event.target.value
+                }
+              }
+            })
+          : _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.description,
+                  expression: "description"
+                }
+              ],
+              staticClass: "form-control",
+              staticStyle: { width: "100%", "border-color": "#3498db" },
+              attrs: {
+                type: "text",
+                maxlength: "10",
+                placeholder: "Escribir nuevo contacto",
+                id: "description",
+                name: "description"
+              },
+              domProps: { value: _vm.description },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.description = $event.target.value
+                }
+              }
+            })
+      ])
+    ]),
+    _vm._v(" "),
+    _c("hr")
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-a7e509ea", module.exports)
+  }
+}
+
+/***/ }),
+/* 52 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
