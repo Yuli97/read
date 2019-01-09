@@ -17,7 +17,7 @@
                             <i class="fa fa-reply" aria-hidden="true"></i>
                     </a>
                 <div class="card">
-                    <div class="card-header"> AGREGAR NUEVA COMPAÑI </div>
+                    <div class="card-header"> AGREGAR NUEVA COMPAÑIA </div>
                     <div class="card-body">
                         @include('sections.messages')
                         {!! Form::open(['url' => 'company','files'=>'true']) !!}
